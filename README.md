@@ -8,11 +8,7 @@ Pluggable components to add a Trello (like) kanban board to your application
 
 > This library is not affiliated, associated, authorized, endorsed by or in any way officially connected to Trello, Inc. `Trello` is a registered trademark of Atlassian, Inc.
 
-#### Basic Demo
-[![Edit react-trello-example](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/1o3zj95m9j)
 
-#### Features Showcase
-[Storybook](https://rcdexta.github.io/react-trello/)
 
 ## Features
 
@@ -28,6 +24,15 @@ Pluggable components to add a Trello (like) kanban board to your application
 * Inline edit lane's title
 
 ## Getting Started
+
+For Veronica
+```
+yarn install --frozen-lockfile
+
+yarn run storybook
+
+
+```
 
 Install using npm or yarn
 
@@ -83,21 +88,6 @@ export default class App extends React.Component {
 }
 ```
 
-Refer to storybook for detailed examples: https://rcdexta.github.io/react-trello/
-
-Also refer to the sample project that uses react-trello as illustration: https://github.com/rcdexta/react-trello-example
-
-## Use edge version of project (current master branch)
-
-```bash
-$ yarn add rcdexta/react-trello
-```
-
-and
-
-```javascript
-import Board from 'react-trello/src'
-```
 
 ## Upgrade
 
@@ -234,7 +224,6 @@ const data = {
   />
 ```
 
-Storybook example - [stories/Styling.story.js](stories/Styling.story.js)
 
 ### 3. Completely customize the look-and-feel by using components dependency injection.
 
@@ -309,8 +298,6 @@ const customTranslation = createTranslate(TRANSLATION_TABLE)
 
 <Board t={customTranslation} .../>
 ```
-
-List of available keys - [locales/en/translation.json](https://github.com/rcdexta/react-trello/blob/master/locales/en/translation.json)
 
 
 ### react-i18next example
@@ -454,6 +441,3 @@ Learn how to write stories [here](https://storybook.js.org/basics/writing-storie
 </table>
 
 
-### License
-
-MIT

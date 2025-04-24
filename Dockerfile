@@ -1,5 +1,5 @@
 # Build stage
-FROM node:16-alpine as build
+FROM node:18-alpine as build
 
 # Set working directory
 WORKDIR /app
@@ -18,7 +18,7 @@ COPY . .
 RUN yarn build
 
 # Production stage
-FROM node:16-alpine as production
+FROM node:18-alpine as production
 
 # Set working directory
 WORKDIR /app
@@ -27,8 +27,8 @@ WORKDIR /app
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/package.json ./
 
-# Install only production dependencies
-RUN yarn install --production --frozen-lockfile
+# Install only production dependencies with ignore-engines flag to bypass version requirements
+RUN yarn install --production --frozen-lockfile --ignore-engines
 
 # Expose port (if your app has a specific port, otherwise remove this line)
 EXPOSE 8080
@@ -37,7 +37,7 @@ EXPOSE 8080
 CMD ["node", "dist/index.js"]
 
 # Development stage with Storybook
-FROM node:16-alpine as development
+FROM node:18-alpine as development
 
 # Set working directory
 WORKDIR /app
@@ -47,7 +47,7 @@ COPY package.json ./
 COPY yarn.lock ./
 
 # Install dependencies without running scripts that might need the source code
-RUN yarn install --frozen-lockfile --ignore-scripts
+RUN yarn install --frozen-lockfile --ignore-scripts --ignore-engines
 
 # The source files will be mounted as a volume
 # No need to copy them here as they will be available at runtime
