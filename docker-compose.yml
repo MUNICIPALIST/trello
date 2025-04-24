@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  # Development environment with Storybook
+  dev:
+    build: 
+      context: .
+      target: development
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - "9002:9002"
+    environment:
+      - NODE_ENV=development
+    # Make sure we have the source code in the container
+    command: sh -c "ls -la && yarn run storybook --host 0.0.0.0"
+
+  # Production build
+  prod:
+    build:
+      context: .
+      target: production
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
